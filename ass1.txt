@@ -1,0 +1,54 @@
+create database chaitu
+
+create tabLE Customer
+(
+ID INT PRIMARY KEY,
+FIRSTNAME NVARCHAR(40) NOT NULL,
+LASTNAME NVARCHAR(40) ,
+CITY NVARCHAR(40) ,
+COUNTRY NVARCHAR(40) ,
+PHONE NVARCHAR(20) 
+)
+create TABLE Orders
+(
+ID INT PRIMARY KEY,
+ORDERDATE DATETIME NOT NULL,
+ORDERNUMBER NVARCHAR(10) ,
+CUSTOMERID INT,
+TOTALAMOUNT DECIMAL(12,2)
+)
+alter table orders add constraint orders_customerid_fk
+foreign key (customerid) references customer (id)
+create TABLE Orderitem
+(
+ID INT PRIMARY KEY,
+ORDERid int ,
+productid int ,
+unitprice DECIMAL(12,2),
+quantity int
+)
+alter table orderitem add constraint orderitem_orderid_fk
+foreign key (orderid) references orders (id)
+
+create TABLE product
+(
+ID INT PRIMARY KEY,
+productname nvarchar(50) ,
+unitprice DECIMAL(12,2),
+package nvarchar(30),
+isdiscontinued bit
+)
+alter table orderitem add constraint orderitem_productid_fk
+foreign key (productid) references product (id)
+
+select*from customer
+
+select country
+from customer
+where country like 'a%' or country like 'i%'
+
+select firstname
+from customer
+where firstname like '__i%'
+
+

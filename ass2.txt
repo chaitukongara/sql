@@ -1,0 +1,143 @@
+select country
+from customer
+where country ='germany'
+
+select firstname+lastname from customers
+
+select * from customer where faxnumber is not null
+
+select firstname
+from customer
+where firstname like '_u%'
+
+select unitprice 
+from Orderitem
+where unitprice BETWEEN 10 and 20;
+
+alter table customer
+add faxnumber nvarchar(50);
+
+ 
+
+select* from customer;
+
+ 
+
+update customer set faxnumber=362-456789
+where Id=1;
+
+ 
+
+update customer set faxnumber=+91-362-456789
+where Id=2;
+
+ 
+
+select * from customer where faxnumber is not null;
+
+ 
+
+select * from customer where firstname like'__r%';
+
+ 
+
+select * from orderitem;
+select * from orders where id in (select orderid from orderitem where unitprice between 106 and 10001);
+
+ 
+
+alter table orders
+add shippingdate datetime;
+
+ 
+
+select * from orders;
+
+ 
+
+update orders 
+set shippingdate='2002-01-04'
+where id = '2';
+
+ 
+
+update orders 
+set shippingdate='2001-09-04'
+where id = '1';
+
+update orders 
+set shippingdate='1992-09-14'
+where id = '3';
+
+ 
+
+select * from orders
+where shippingdate is not null
+order by shippingdate desc;
+
+ 
+
+alter table orders
+add shipname varchar(50);
+
+ 
+
+select *from orders;
+select *from orderitem;
+select *from product;
+
+ 
+
+update orders set shipname ='fish'
+where id =1;
+
+ 
+
+select *from orders where shipname like 'fish' and (shippingdate between '2001-09-03' and '1992-09-10');
+
+ 
+
+select productid, avg(quantity) as average from orderitem
+group by productid;
+
+ 
+
+alter table orders
+add shippingcompany varchar(30);
+update orders set shippingcompany = 'APP'
+where id = 2;
+
+ 
+
+select shippingcompany, shipname from orders where shipname is not null;
+
+ 
+
+
+alter table product
+add category varchar(30);
+
+ 
+
+update product set category ='portable'
+where id =106;
+
+ 
+
+alter table product
+add discount int;
+
+ 
+
+update product
+set discount = 0
+where id =106;
+
+ 
+
+select productname, category, unitprice - discount as price from product;
+
+ 
+
+select shippingcompany, totalamount as totalprice from orders
+where shippingcompany like 'amazon' and totalamount > 1000;
